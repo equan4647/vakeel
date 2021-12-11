@@ -1,0 +1,35 @@
+// import {} from './types';
+// import { IDENTIFIERS } from '../../config/Constants';
+// import { Util, AppUtil } from '../../utils';
+
+import { AppUtil, Util } from '../../utils';
+import { SERVICES_LIST, SET_SERVICES } from './types';
+
+const initialState = { data: {}, usersProfile: {} };
+
+export default (state = initialState, action) => {
+  switch (action.type) {
+    // case SERVICES_LIST.REQUEST: {
+    //   if (action.isResetData) {
+    //     return {
+    //       ...state,
+    //       [action.identifier]: [],
+    //     };
+    //   }
+    //   return state;
+    // }
+
+    case SET_SERVICES: { // case SERVICES_LIST.SUCCESS:
+      // case CLASSIFIED_LIST.SUCCESS:
+      const { ids, items } = Util.normalizeData(action.data);
+      return {
+        ...state,
+        [action.identifier]: AppUtil.getConcatDataList(action, ids, state),
+        data: { ...state.data, ...items },
+      };
+    }
+
+    default:
+      return state;
+  }
+};

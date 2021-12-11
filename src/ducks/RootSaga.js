@@ -1,0 +1,55 @@
+import { fork } from 'redux-saga/effects';
+
+import addresses from './addresses/saga';
+import dropdown from './dropdown/saga';
+import auth from './auth/saga';
+import products from './products/saga';
+import classified from './classified/saga';
+import categories from './categories/saga';
+import home from './home/saga';
+import chat from './chat/saga';
+import searchKeyword from './searchKeyword/saga';
+import carousel from './carousel/saga';
+import location from './location/saga';
+import reviews from './reviews/saga';
+import userRoles from './userRoles/saga';
+import buyingCart from './buyingCart/saga';
+import orders from './orders/saga';
+import boominUsers from './boominUsers/saga';
+import payment from './payment/saga';
+import advertising from './advertising/saga';
+import services from './services/saga';
+import deliveryHistory from './deliveryHistory/saga';
+import delivery from './delivery/saga';
+import notifications from './notifications/saga';
+import serviceHistory from './serviceHistory/saga';
+import restaurants from './restaurants/saga';
+import foodOrders from './foodOrders/saga';
+
+export default function* root() {
+  yield fork(auth);
+  yield fork(home);
+  yield fork(chat);
+  yield fork(userRoles);
+  yield fork(addresses);
+  yield fork(classified);
+  yield fork(products);
+  yield fork(categories);
+  yield fork(carousel);
+  yield fork(dropdown);
+  yield fork(searchKeyword);
+  yield fork(location);
+  yield fork(reviews);
+  yield fork(buyingCart);
+  yield fork(orders);
+  yield fork(boominUsers);
+  yield fork(payment);
+  yield fork(advertising);
+  yield fork(services);
+  yield fork(deliveryHistory);
+  yield fork(delivery);
+  yield fork(notifications);
+  yield fork(serviceHistory);
+  yield fork(restaurants);
+  yield fork(foodOrders);
+}

@@ -1,0 +1,27 @@
+export default {
+  make: [
+    { id: 1, title: 'Abarth' },
+    { id: 3, title: 'ABT' },
+    { id: 4, title: 'AC' },
+    { id: 5, title: 'AC Schnitzer' },
+    { id: 6, title: 'Acura' },
+    { id: 7, title: 'Alfa Romeo' },
+    { id: 8, title: 'Allard' },
+    { id: 9, title: 'City 9' },
+  ],
+  model: [
+    { id: 1, title: '2021' },
+    { id: 3, title: '2020' },
+    { id: 4, title: '2019' },
+    { id: 5, title: '2018' },
+    { id: 6, title: '2017' },
+    { id: 7, title: '2016' },
+    { id: 8, title: '2015' },
+    { id: 9, title: '2014' },
+    { id: 10, title: '2013' },
+    { id: 11, title: '2012' },
+    { id: 12, title: '2011' },
+    { id: 13, title: '2010' },
+    { id: 14, title: '2009' },
+  ],
+};

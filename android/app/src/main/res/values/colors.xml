@@ -1,0 +1,5 @@
+<resources>
+    <color name="colorPrimary">#50c80e</color>
+    <color name="textColor">#000</color>
+    <color name="notificationColor">#fff</color>
+</resources>

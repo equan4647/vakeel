@@ -1,0 +1,35 @@
+import { call, put, takeEvery, fork, take, delay } from 'redux-saga/effects';
+
+import {
+  successAdvertisingListing,
+  failureAdvertisingListing,
+  successServicesListing,
+  failureServicesListing,
+} from './actions';
+import { callRequest, callRequestFileUpload } from '../../utils/ApiSauce';
+import {
+  API_GET_ADVERTISMENTS,
+  API_GET_MY_ADVERTISMENTS,
+} from '../../config/WebService';
+import { SERVICES_LIST } from './types';
+
+function* watchServicesListRequest(action) {
+  const { payload, url, identifier, reset } = action;
+  try {
+    const response = yield call(callRequest, url, payload);
+    yield put(
+      successServicesListing(
+        response?.data ?? [],
+        response?.page ?? {},
+        reset,
+        identifier
+      )
+    );
+  } catch (err) {
+    yield put(failureServicesListing(err.message, identifier));
+  }
+}
+
+export default function* root() {
+  yield takeEvery(SERVICES_LIST.REQUEST, watchServicesListRequest);
+}

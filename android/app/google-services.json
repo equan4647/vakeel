@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "582542416956",
+    "project_id": "bizad-user",
+    "storage_bucket": "bizad-user.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:582542416956:android:1b58c6a37b7507aa2eb739",
+        "android_client_info": {
+          "package_name": "com.bizad"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "582542416956-866s4pm0l87o0surqt6si9cn1q4mmj9o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bizad",
+            "certificate_hash": "4b622d34b6bbd9709beafc49c0309002d124815e"
+          }
+        },
+        {
+          "client_id": "582542416956-jfpbc3dlsgcv7mmg9koaaek8r00u6d28.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bizad",
+            "certificate_hash": "ddc882398448bd9e43631fdf366d9bc9d68d60ef"
+          }
+        },
+        {
+          "client_id": "582542416956-2ec89sblus5ou0nc40vvgtohkoggkh6f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAG0mHpXH2AMUb0hVU8ui-GoUYgxBoLajU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "582542416956-2ec89sblus5ou0nc40vvgtohkoggkh6f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "582542416956-tg1g78f11e08an9m60i3r6dddosiofhm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bizad"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

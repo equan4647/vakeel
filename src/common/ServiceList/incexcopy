@@ -1,0 +1,144 @@
+import { View, FlatList, ViewPropTypes } from 'react-native';
+import PropTypes from 'prop-types';
+import React from 'react';
+
+import { AppStyles } from '../../theme';
+import styles from './styles';
+import Item from './Item';
+import { useSelector } from 'react-redux';
+import { getRadius } from '../../ducks/radius/selectors';
+import { MODULE } from '../../config/Constants';
+import { getLastLocation } from '../../ducks/location/selectors';
+import { FlatListApi } from '../../components';
+import { servicesActions, servicesSelectors } from '../../ducks/services';
+import { requestFlagSelectors } from '../../ducks/requestFlags';
+import { FilterBar } from '..';
+import { NavigationService } from '../../utils';
+
+const ServiceList = props => {
+  const {
+    listStyle,
+    contentContainerStyle,
+    identifier,
+    payload,
+    url,
+    hideSorting,
+    hideFilters,
+  } = props;
+
+  // get location and radius
+  const radius = useSelector(getRadius(MODULE.SERVICE));
+  const lastLocation = useSelector(getLastLocation(MODULE.SERVICE));
+
+  // set filters object
+  const [filter, setFilter] = React.useState({});
+
+  // dispatch const
+  const dispatch = useDispatch();
+
+  // reset list when unamount
+  React.useEffect(() => {
+    return () => {
+      // dispatch(productActions.resetListBuying(identifier));
+    };
+  }, []);
+
+  // const { filtersPayload, filterCount } = React.useMemo(
+  //   () => ProductUtil.getFiltersInfoBuying(filter),
+  //   [filter]
+  // );
+
+  const servicesList = useSelector(
+    servicesSelectors.getServicesList(identifier)
+  );
+
+  const requestFlags = useSelector(
+    requestFlagSelectors.getRequestFlag(`PRODUCT_LIST_${identifier}`)
+  );
+
+  const onApplyFilter = filterData => {
+    setFilter(filterData);
+  };
+
+  const onFilterPress = () => {
+    NavigationService.navigate('FiltersBuying', {
+      onApply: onApplyFilter,
+      filter: {},
+      filterSelectedValues: filter,
+      hideSorting: hideSorting,
+    });
+  };
+
+  const renderFilterBar = () => {
+    if (hideFilters) {
+      return null;
+    }
+
+    const totalRecords = requestFlags?.totalRecords ?? 0;
+    const hideFilter =
+      requestFlags && requestFlags.loading && !requestFlags.isPullToRefresh;
+    if (hideFilter) {
+      return null;
+    } else {
+      return (
+        <FilterBar
+          onPress={onFilterPress}
+          results={totalRecords}
+          filters={filterCount}
+        />
+      );
+    }
+  };
+
+  return (
+    // <FlatList
+    //   showsVerticalScrollIndicator={false}
+    //   data={props.data}
+    //   style={[AppStyles.container, props.style]}
+    //   contentContainerStyle={[
+    //     AppStyles.listContainer,
+    //     props.contentContainerStyle,
+    //   ]}
+    //   keyExtractor={(_, index) => index.toString()}
+    //   renderItem={({ item }) => <Item {...item} onPressItem={() => {}} />}
+    //   ItemSeparatorComponent={() => <View style={styles.separator} />}
+    //   {...props}
+    <FlatListApi
+      data={servicesList}
+      requestAction={servicesActions.requestServicesListing}
+      style={[AppStyles.container, props.style]}
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={[
+        AppStyles.listContainer,
+        props.contentContainerStyle,
+      ]}
+      directionalLockEnabled
+      ItemSeparatorComponent={() => <View style={styles.separator} />}
+      keyExtractor={item => item}
+      renderItem={({ item }) => <Item {...item} onPressItem={() => {}} />}
+      filters={{
+        ...filtersPayload,
+        radius,
+        lat: lastLocation.lat,
+        long: lastLocation.lng,
+      }}
+      {...{
+        requestFlags,
+        payload,
+        url,
+        listStyle,
+        // contentContainerStyle,
+        identifier,
+      }}
+    />
+  );
+};
+
+ServiceList.propTypes = {
+  data: PropTypes.array,
+  style: ViewPropTypes.style,
+  contentContainerStyle: ViewPropTypes.style,
+};
+ServiceList.defaultProps = { data: [] };
+
+export default ServiceList;

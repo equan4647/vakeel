@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">BizAd</string>
+    <!-- <string name="facebook_app_id">842118669719079</string> -->
+    <string name="facebook_app_id">187757676157930</string>
+    <string name="fb_login_protocol_scheme">fb187757676157930</string>
+    <string name="bizad_channel_id">bizad</string>
+</resources>
